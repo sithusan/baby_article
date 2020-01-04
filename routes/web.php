@@ -21,6 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
 
-Route::view('/test','test.index');
+Route::resource('/category',    'CategoryController');
 
 });
