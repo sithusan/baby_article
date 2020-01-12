@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->text('video_url');
             $table->longText('description');
             $table->timestamps();
-            $table->foreign('sub_sub_category_id')->references('id')->on('sub_sub_categories');
+            $table->foreign('sub_sub_category_id')->references('id')->on('sub_sub_categories')->onDelete('cascade');
         });
     }
 

@@ -4,17 +4,17 @@
 <a href="" class="btn-transition btn btn-outline-primary"> Create Data</a>
         <div class="main-card my-2 card">
             <div class="card-body"><h5 class="card-title">Category</h5>
-                <form action="{{ action('SubCategoryController@update',$subCategory->id) }}" method = "POST">
+                <form action="{{ action('SubSubCategoryController@update',$subSubCategory->id) }}" method = "POST">
                     <input type="hidden" value = "PUT" name = "_method">
                     @csrf
                     <div class="form-row">
                         <div class="col-md-6">
                                 <div class="position-relative form-group">
                                         <label>Category</label>
-                                        <select name="category_id" class="form-control">
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id}}" class="form-control" {{ $category->id == $subCategory->category_id ? 'selected' : ''}}>
-                                                     {{ $category->name }}
+                                        <select name="sub_category_id" class="form-control">
+                                            @foreach ($subCategories as $subCategory)
+                                                <option value="{{ $subCategory->id}}" class="form-control" {{ $subCategory->id == $subSubCategory->sub_category_id ? 'selected' : ''}}>
+                                                     {{ $subCategory->name }}
                                                 </option>                                    
                                             @endforeach
                                         </select>
@@ -22,7 +22,7 @@
         
                                     <div class="position-relative form-group" @error('name') has-danger @enderror">
                                         <label>Category</label>
-                                        <input class="form-control @error('name') form-control-danger @enderror" name="name" value="{{ old('name', $subCategory->name) }}"  autocomplete="name" id="name" autofocus type="text">
+                                        <input class="form-control @error('name') form-control-danger @enderror" name="name" value="{{ old('name', $subSubCategory->name) }}"  autocomplete="name" id="name" autofocus type="text">
                                     </div>
                                     @error('name')
                                             <span class="form-control-feedback">

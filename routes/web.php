@@ -12,16 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
 
-    Route::resource('/category',    'CategoryController');
-    Route::resource('/subCategory', 'SubCategoryController');
+    Route::resource('/category',            'CategoryController');
+    Route::resource('/subCategory',         'SubCategoryController');
+    Route::resource('/subSubCategory',      'SubSubCategoryController');
+    Route::resource('/article',             'ArticleController');
 
 });

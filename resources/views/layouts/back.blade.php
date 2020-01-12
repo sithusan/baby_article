@@ -65,7 +65,15 @@
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="0" class="dropdown-item">User Account</button>
+                                            <a tabindex="0" class="dropdown-item" href="{{ route('logout') }}"
+                                              onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                         </div>
                                     </div>
                                 </div>
@@ -123,6 +131,14 @@
                                     <a href="{{ action('SubCategoryController@index') }}" class="mm-active">
                                             <i class="metismenu-icon"></i>
                                             SubCategory
+                                    </a>
+                                    <a href="{{ action('SubSubCategoryController@index') }}" class="mm-active">
+                                        <i class="metismenu-icon"></i>
+                                        SubSub Category
+                                    </a>
+                                    <a href="{{ action('ArticleController@index') }}" class="mm-active">
+                                        <i class="metismenu-icon"></i>
+                                        Article
                                     </a>
                                 </li>
                                 
