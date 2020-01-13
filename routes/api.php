@@ -24,4 +24,5 @@ Route::group(['middleware' => 'apiMiddleware'], function () {
     Route::get('/subCategory','Api\ApiController@subCategory');
     Route::get('/subSubCategory','Api\ApiController@subSubCategory');
     Route::get('/article',       'Api\ApiController@article');
+    Route::post('/customer/register','Api\AuthController@register');
 });
