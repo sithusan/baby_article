@@ -16,7 +16,7 @@ class AuthController extends Controller
         $customer->name         = $request->name;
         $customer->daddy_name   = $request->daddy_name;
         $customer->division_or_state = $request->division_or_state;
-        $customer->password          = bcrypt($request->passwordd);
+        $customer->password          = bcrypt($request->password);
         $customer->save();
         if($customer){
             return response()->json([
