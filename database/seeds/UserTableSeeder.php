@@ -12,6 +12,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('users')->delete();
         DB::table('users')->insert([
             'name'  => 'Dev',
             'email' => 'dev@empathy-building.com',
