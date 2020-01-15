@@ -26,4 +26,5 @@ Route::group(['middleware' => 'apiMiddleware'], function () {
     Route::get('/article',       'Api\ApiController@article');
     Route::post('/customer/register','Api\AuthController@register');
     Route::post('/customer/login',   'Api\AuthController@login');
+    Route::get('/regionAndState',	'Api\ApiController@RegionAndState');
 });

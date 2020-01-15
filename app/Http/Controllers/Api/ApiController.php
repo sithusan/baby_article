@@ -11,10 +11,19 @@ use App\Http\Controllers\Controller;
 use App\SubCategory;
 use App\SubSubCategory;
 use App\Article;
+use App\RegionAndState;
 
 class ApiController extends Controller
 {
     //
+   public function RegionAndState(){
+      $regionAndState = RegionAndState::get();
+      return response()->json([
+        'code' => Response::HTTP_OK,
+        'message' => 'Region and State',
+        'data' => $regionAndState,
+    ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+   }
    public function category(Request $request){
    	 
        $category = Category::get();
