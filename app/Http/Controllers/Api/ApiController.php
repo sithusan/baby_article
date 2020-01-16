@@ -12,6 +12,7 @@ use App\SubCategory;
 use App\SubSubCategory;
 use App\Article;
 use App\RegionAndState;
+use App\Baby;
 
 class ApiController extends Controller
 {
@@ -57,5 +58,19 @@ class ApiController extends Controller
       'message' => 'Article Data',
       'data' => $article,
     ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
-}
+  }
+  public function babyStore(Request $request){
+    $baby = new Baby();
+    $baby->baby_name = $request->baby_name;
+    $baby->dob       = $request->dob;
+    $baby->gender    = $request->gender;
+    $baby->customer_id = $request->customer_id;
+    $baby->save();
+    
+    return response()->json([
+      'code' => Response::HTTP_OK,
+      'message' => 'Baby Created',
+      'data' => $baby,
+    ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+  }
 }

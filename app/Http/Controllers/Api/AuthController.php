@@ -28,6 +28,8 @@ class AuthController extends Controller
     }
     public function login(Request $request){
         $customer = Customer::where('name', $request->name)->first();
+        $customer->status = true;
+        $customer->save();
         if ($customer) {
              if (Hash::check($request->password, $customer->password)) {
                  return response()->json([
@@ -51,5 +53,32 @@ class AuthController extends Controller
             ], 422, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
 
+    }
+    public function checkLogin(Request $request){
+        $status = Customer::where('id',$request->customer_id)->pluck('status')->first();
+        if($status == false){
+            return response()->json([
+                'code' => 200,
+                'message' => 'Not Login',
+                'data' => $status,
+            ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        }
+        else{
+            return response()->json([
+                'code' => 200,
+                'message' => 'Logined',
+                'data' => $status,
+            ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+        }
+    }
+    public function logout(Request $request){
+        $customer = Customer::find($request->customer_id);
+        $customer->status = false;
+        $customer->save();
+        return response()->json([
+            'code' => 200,
+            'message' => 'Logout',
+            'data' => $customer,
+        ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 }
