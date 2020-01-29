@@ -30,4 +30,5 @@ Route::group(['middleware' => 'apiMiddleware'], function () {
     Route::get('/checkLogin',       'Api\AuthController@checkLogin');
     Route::get('/logout',           'Api\AuthController@logout');
     Route::post('/baby/store',      'Api\ApiController@babyStore');
+    Route::post('/checkBaby',        'Api\ApiController@checkBaby');
 });

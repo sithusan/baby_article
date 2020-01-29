@@ -13,6 +13,7 @@ use App\SubSubCategory;
 use App\Article;
 use App\RegionAndState;
 use App\Baby;
+use App\Customer;
 
 class ApiController extends Controller
 {
@@ -26,7 +27,7 @@ class ApiController extends Controller
     ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
    }
    public function category(Request $request){
-   	 
+
        $category = Category::get();
        return response()->json([
         'code' => Response::HTTP_OK,
@@ -66,11 +67,28 @@ class ApiController extends Controller
     $baby->gender    = $request->gender;
     $baby->customer_id = $request->customer_id;
     $baby->save();
-    
+
     return response()->json([
       'code' => Response::HTTP_OK,
       'message' => 'Baby Created',
       'data' => $baby,
     ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+  }
+  public function checkBaby(Request $request){
+    $customer = Customer::find($request->customer_id);
+    if($customer->baby == null){
+        return response()->json([
+            'code' => 200,
+            'message' => 'Not Insert Baby Info',
+            'data' => 0,
+        ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+    }
+    else{
+        return response()->json([
+            'code' => 200,
+            'message' => 'Baby Info Inserted',
+            'data' => 1,
+        ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+    }
   }
 }
