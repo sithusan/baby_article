@@ -4,7 +4,7 @@
 <a href="" class="btn-transition btn btn-outline-primary"> Create Data</a>
         <div class="main-card my-2 card">
             <div class="card-body"><h5 class="card-title">Category</h5>
-                <form action="{{ action('ArticleController@store') }}" method = "POST">
+                <form action="{{ action('ArticleController@store') }}" method = "POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                            <div class="col-md-6">
@@ -40,11 +40,11 @@
 
                     <div class="form-row">
                         <div class="col-md-4">
-                                <div class="position-relative form-group" @error('video_url') has-danger @enderror">
+                                <div class="position-relative form-group" @error('video') has-danger @enderror">
                                     <label>Video Url</label>
-                                    <input class="form-control @error('video_url') form-control-danger @enderror" name="video_url" value="{{ old('video_url') }}"  autocomplete="video_url" id="video_url" autofocus type="text">
+                                    <input class="form-control @error('video') form-control-danger @enderror" name="video" value="{{ old('video') }}"  autocomplete="video" id="video" autofocus type="text">
                                 </div>
-                                @error('video_url')
+                                @error('video')
                                         <span class="form-control-feedback">
                                             <strong style="color:red;">{{ $message }}</strong>
                                         </span>
@@ -81,7 +81,7 @@
                  </div>
                  <button class="btn btn-primary">Save</button>
 
-                        
+
                 </form>
             </div>
         </div>

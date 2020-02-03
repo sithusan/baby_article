@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\SubSubCategory;
 use App\Http\Requests\ArticleStoreRequest;
+use App\Utils\Video;
 
 class ArticleController extends Controller
 {
@@ -41,11 +42,10 @@ class ArticleController extends Controller
      */
     public function store(ArticleStoreRequest $request)
     {
-        //
         $article = new Article;
         $article->title = $request->title;
         $article->sub_sub_category_id = $request->sub_sub_category_id;
-        $article->video_url       = $request->video_url;
+        $article->video_url       = $request->video;
         $article->summary         = $request->summary;
         $article->description     = $request->description;
         $article->save();

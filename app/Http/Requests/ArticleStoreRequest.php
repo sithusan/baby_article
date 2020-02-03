@@ -26,7 +26,7 @@ class ArticleStoreRequest extends FormRequest
         return [
             'summary'  => 'required',
             'title'    => 'required|max:255',
-            'video_url'=> 'required|max:255',
+            'video'    => 'required',
             'description'=> 'required',
 
         ];

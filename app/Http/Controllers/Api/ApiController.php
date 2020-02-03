@@ -75,19 +75,21 @@ class ApiController extends Controller
     ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
   }
   public function checkBaby(Request $request){
-    $customer = Customer::find($request->customer_id);
-    if($customer->baby == null){
+    $customer = Customer::where('id',$request->customer_id)->first();
+    if($customer == null){
+        $data = ['status' => 0];
         return response()->json([
             'code' => 200,
             'message' => 'Not Insert Baby Info',
-            'data' => 0,
+            'data' => $data,
         ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
     else{
+        $data = ['status' => 1];
         return response()->json([
             'code' => 200,
             'message' => 'Baby Info Inserted',
-            'data' => 1,
+            'data' => $data,
         ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
   }
